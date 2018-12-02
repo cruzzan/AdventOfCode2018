@@ -1,7 +1,6 @@
 package menu
 
 import (
-	"fmt"
 	"github.com/cruzzan/AdventOfCode2018/internal/pkg/router"
 	"gopkg.in/alecthomas/kingpin.v2"
 )
@@ -23,7 +22,6 @@ func NewMenu(r router.Router) Menu {
 func (m Menu) Parse()  {
 	kingpin.Version("0.0.1")
 	kingpin.Parse()
-	fmt.Printf("hello, you want to run %s? \n", *day)
 }
 
 func (m Menu) Execute() {
