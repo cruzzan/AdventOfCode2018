@@ -1,7 +1,7 @@
-package Menu
+package menu
 
 import (
-	"github.com/cruzzan/AdventOfCode2018/internal/pkg/Router"
+	"github.com/cruzzan/AdventOfCode2018/internal/pkg/router"
 	"github.com/stretchr/testify/mock"
 	"testing"
 )
@@ -11,7 +11,7 @@ func TestMenuCallsRouter(t *testing.T) {
 }
 
 func testMenuCallsRouterWithArgument(t *testing.T)  {
-	mr := new(Router.MockRouter)
+	mr := new(router.MockRouter)
 	mr.On("Route", mock.Anything)
 
 	menu := NewMenu(mr)

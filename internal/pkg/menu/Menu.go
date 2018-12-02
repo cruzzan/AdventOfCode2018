@@ -1,8 +1,8 @@
-package Menu
+package menu
 
 import (
 	"fmt"
-	"github.com/cruzzan/AdventOfCode2018/internal/pkg/Router"
+	"github.com/cruzzan/AdventOfCode2018/internal/pkg/router"
 	"gopkg.in/alecthomas/kingpin.v2"
 )
 
@@ -11,10 +11,10 @@ var(
 )
 
 type Menu struct {
-	Router Router.Router
+	Router router.Router
 } 
 
-func NewMenu(r Router.Router) Menu {
+func NewMenu(r router.Router) Menu {
 	return Menu{
 		Router: r,
 	}
