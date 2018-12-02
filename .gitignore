@@ -15,6 +15,9 @@
 ### Example user template template
 ### Example user template
 
+# Vendoring
+vendor/*
+
 # IntelliJ project files
 .idea
 out
