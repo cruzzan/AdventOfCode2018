@@ -1,7 +1,7 @@
 package Menu
 
 import (
-	"github.com/cruzzan/AdventOfCode2018/pkg/Router"
+	"github.com/cruzzan/AdventOfCode2018/internal/pkg/Router"
 	"github.com/stretchr/testify/mock"
 	"testing"
 )

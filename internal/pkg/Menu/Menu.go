@@ -2,7 +2,7 @@ package Menu
 
 import (
 	"fmt"
-	"github.com/cruzzan/AdventOfCode2018/pkg/Router"
+	"github.com/cruzzan/AdventOfCode2018/internal/pkg/Router"
 	"gopkg.in/alecthomas/kingpin.v2"
 )
 

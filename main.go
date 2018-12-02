@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/cruzzan/AdventOfCode2018/pkg/Menu"
-	"github.com/cruzzan/AdventOfCode2018/pkg/Router"
+	"github.com/cruzzan/AdventOfCode2018/internal/pkg/Menu"
+	"github.com/cruzzan/AdventOfCode2018/internal/pkg/Router"
 )
 
 func main()  {

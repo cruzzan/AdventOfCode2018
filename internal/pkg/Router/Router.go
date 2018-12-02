@@ -2,7 +2,7 @@ package Router
 
 import (
 	"fmt"
-	"github.com/cruzzan/AdventOfCode2018/pkg/days/one"
+	"github.com/cruzzan/AdventOfCode2018/internal/pkg/days/one"
 )
 
 type Router interface {
