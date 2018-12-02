@@ -6,6 +6,6 @@ type MockRouter struct {
 	mock.Mock
 }
 
-func (rm MockRouter) Route(day string) {
-	rm.Called(day)
+func (rm MockRouter) Route(dayName string, puzzle int) {
+	rm.Called(dayName, puzzle)
 }

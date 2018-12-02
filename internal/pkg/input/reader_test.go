@@ -16,8 +16,7 @@ func TestStringToIntConversion(t *testing.T) {
 	r := Reader{}
 
 	for _, c := range cases {
-		r.lines = c.in
-		got := r.LinesToInts()
+		got := r.LinesToInts(c.in)
 		if len(got) != len(c.want) {
 			t.Errorf("The lenghts don't match, expected %d but got %d\n", len(c.want), len(got))
 		}

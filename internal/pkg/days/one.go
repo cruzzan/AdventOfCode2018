@@ -23,8 +23,8 @@ func (d One) Run(puzzle int)  {
 
 func (d One) Puzzle1() {
 	fmt.Println("Task 1")
-	d.r.ReadLines()
-	freqChanges := d.r.LinesToInts()
+	lines := d.r.ReadLines()
+	freqChanges := d.r.LinesToInts(lines)
 	result := d.sumFreqChanges(freqChanges)
 
 	fmt.Printf("Resulting frequency: %d \n", result)
@@ -32,8 +32,8 @@ func (d One) Puzzle1() {
 
 func (d One) Puzzle2() {
 	fmt.Println("Task 2")
-	d.r.ReadLines()
-	freqChanges := d.r.LinesToInts()
+	lines := d.r.ReadLines()
+	freqChanges := d.r.LinesToInts(lines)
 
 	result := d.findFirstFrequencyRepetition(freqChanges)
 

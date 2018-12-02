@@ -12,7 +12,7 @@ func TestMenuCallsRouter(t *testing.T) {
 
 func testMenuCallsRouterWithArgument(t *testing.T)  {
 	mr := new(router.MockRouter)
-	mr.On("Route", mock.Anything)
+	mr.On("Route", mock.Anything, 0)
 
 	menu := NewMenu(mr)
 	menu.Execute()

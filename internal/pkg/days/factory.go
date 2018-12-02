@@ -1,6 +1,8 @@
 package days
 
-import "github.com/cruzzan/AdventOfCode2018/internal/pkg/input"
+import (
+	"github.com/cruzzan/AdventOfCode2018/internal/pkg/input"
+)
 
 type Factory struct {}
 
