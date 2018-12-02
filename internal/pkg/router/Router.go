@@ -1,9 +1,6 @@
 package router
 
-import (
-	"fmt"
-	"github.com/cruzzan/AdventOfCode2018/internal/pkg/days/one"
-)
+import "github.com/cruzzan/AdventOfCode2018/internal/pkg/days"
 
 type Router interface {
 	Route(day string)
@@ -15,11 +12,10 @@ func NewRouter() Router {
 	return &router{}
 }
 
-func (r router) Route(day string)  {
-	switch day {
-	case "one":
-		one.Run("")
-	default:
-		fmt.Println("Gonna run all tasks, or something.")
-	}
+func (r router) Route(dayName string)  {
+	dayFactory := days.Factory{}
+
+	day := dayFactory.GetDay(dayName)
+
+	day.Run(days.Both)
 }
