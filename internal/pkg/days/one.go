@@ -32,6 +32,12 @@ func (d One) Puzzle1() {
 
 func (d One) Puzzle2() {
 	fmt.Println("Task 2")
+	input := readInputLines()
+	freqChanges := d.stringsToInts(input)
+
+	result := d.findFirstFrequencyRepetition(freqChanges)
+
+	fmt.Printf("First repeating frequency: %d \n", result)
 }
 
 func (d One) sumFreqChanges(changes []int) int {
@@ -42,6 +48,36 @@ func (d One) sumFreqChanges(changes []int) int {
 	}
 
 	return result
+}
+
+func (d One) findFirstFrequencyRepetition(changes []int) int {
+	result := 0
+	frequencies := []int{result}
+
+	for i := 0; i < len(changes); i++ {
+		result += changes[i]
+
+		if d.numberInSlice(frequencies, result) {
+			return result
+		} else {
+			frequencies = append(frequencies, result)
+		}
+
+		if i == len(changes) - 1 {
+			i = -1
+		}
+	}
+	return 0
+}
+
+func (d One) numberInSlice(haystack[]int, n int) bool {
+	for _, val := range haystack {
+		if val == n {
+			return true
+		}
+	}
+
+	return false
 }
 
 func (d One) stringsToInts (strings []string) []int {
