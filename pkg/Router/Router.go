@@ -5,15 +5,17 @@ import (
 	"github.com/cruzzan/AdventOfCode2018/pkg/days/one"
 )
 
-type Router struct {
-
+type Router interface {
+	Route(day string)
 }
+
+type router struct {}
 
 func NewRouter() Router {
-	return Router{}
+	return &router{}
 }
 
-func (r Router) Route(day string)  {
+func (r router) Route(day string)  {
 	switch day {
 	case "one":
 		one.Run("")
