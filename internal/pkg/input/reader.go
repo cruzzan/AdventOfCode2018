@@ -3,6 +3,7 @@ package input
 import (
 	"bufio"
 	"os"
+	"strconv"
 )
 
 type Reader struct {
@@ -28,6 +29,19 @@ func (r Reader) ReadLines() []string {
 	}
 
 	return r.lines
+}
+
+func (r Reader) LinesToInts() []int {
+	ints := []int{}
+
+	for _, s := range r.lines {
+		converted, err := strconv.Atoi(s)
+		check(err)
+
+		ints = append(ints, converted)
+	}
+
+	return ints
 }
 
 func check(err error)  {

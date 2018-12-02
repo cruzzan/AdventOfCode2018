@@ -3,7 +3,6 @@ package days
 import (
 	"fmt"
 	"github.com/cruzzan/AdventOfCode2018/internal/pkg/input"
-	"strconv"
 )
 
 type One struct {
@@ -24,8 +23,8 @@ func (d One) Run(puzzle int)  {
 
 func (d One) Puzzle1() {
 	fmt.Println("Task 1")
-	input := d.r.ReadLines()
-	freqChanges := d.stringsToInts(input)
+	d.r.ReadLines()
+	freqChanges := d.r.LinesToInts()
 	result := d.sumFreqChanges(freqChanges)
 
 	fmt.Printf("Resulting frequency: %d \n", result)
@@ -33,8 +32,8 @@ func (d One) Puzzle1() {
 
 func (d One) Puzzle2() {
 	fmt.Println("Task 2")
-	input := d.r.ReadLines()
-	freqChanges := d.stringsToInts(input)
+	d.r.ReadLines()
+	freqChanges := d.r.LinesToInts()
 
 	result := d.findFirstFrequencyRepetition(freqChanges)
 
@@ -79,23 +78,4 @@ func (d One) numberInSlice(haystack[]int, n int) bool {
 	}
 
 	return false
-}
-
-func (d One) stringsToInts (strings []string) []int {
-	ints := []int{}
-
-	for _, s := range strings {
-		converted, err := strconv.Atoi(s)
-		check(err)
-
-		ints = append(ints, converted)
-	}
-
-	return ints
-}
-
-func check(err error)  {
-	if err != nil {
-		panic(err)
-	}
 }
