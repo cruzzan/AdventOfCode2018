@@ -26,6 +26,6 @@ func (m Menu) Parse()  {
 	fmt.Printf("hello, you want to run %s? \n", *day)
 }
 
-func (m Menu) Execute()  {
+func (m Menu) Execute() {
 	m.Router.Route(*day)
 }
