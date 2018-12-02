@@ -1,13 +1,14 @@
 package days
 
 import (
-	"bufio"
 	"fmt"
-	"os"
+	"github.com/cruzzan/AdventOfCode2018/internal/pkg/input"
 	"strconv"
 )
 
-type One struct {}
+type One struct {
+	r input.Reader
+}
 
 func (d One) Run(puzzle int)  {
 	if puzzle == Both {
@@ -23,7 +24,7 @@ func (d One) Run(puzzle int)  {
 
 func (d One) Puzzle1() {
 	fmt.Println("Task 1")
-	input := readInputLines()
+	input := d.r.ReadLines()
 	freqChanges := d.stringsToInts(input)
 	result := d.sumFreqChanges(freqChanges)
 
@@ -32,7 +33,7 @@ func (d One) Puzzle1() {
 
 func (d One) Puzzle2() {
 	fmt.Println("Task 2")
-	input := readInputLines()
+	input := d.r.ReadLines()
 	freqChanges := d.stringsToInts(input)
 
 	result := d.findFirstFrequencyRepetition(freqChanges)
@@ -91,21 +92,6 @@ func (d One) stringsToInts (strings []string) []int {
 	}
 
 	return ints
-}
-
-func readInputLines() []string {
-	inputLines := []string{}
-	file, err := os.Open("inputs/one/1.txt")
-	check(err)
-
-	scanner := bufio.NewScanner(file)
-
-	for scanner.Scan() {
-		inputLines = append(inputLines, scanner.Text())
-	}
-
-
-	return inputLines
 }
 
 func check(err error)  {
