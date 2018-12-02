@@ -1,8 +1,14 @@
 package main
 
-import "github.com/cruzzan/AdventOfCode2018/pkg/menu"
+import (
+	"github.com/cruzzan/AdventOfCode2018/pkg/Menu"
+	"github.com/cruzzan/AdventOfCode2018/pkg/Router"
+)
 
 func main()  {
-	menu.Parse()
-	menu.Execute()
+	r := Router.NewRouter()
+	m := Menu.NewMenu(r)
+
+	m.Parse()
+	m.Execute()
 }
