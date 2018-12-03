@@ -54,19 +54,6 @@ func (r Reader) ReadLinesAsNumbers() []int {
 	return numbers
 }
 
-func (r Reader) LinesToInts(lines []string) []int {
-	ints := []int{}
-
-	for _, s := range lines {
-		converted, err := strconv.Atoi(s)
-		check(err)
-
-		ints = append(ints, converted)
-	}
-
-	return ints
-}
-
 func check(err error)  {
 	if err != nil {
 		panic(err)

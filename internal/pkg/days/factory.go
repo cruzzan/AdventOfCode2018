@@ -12,11 +12,13 @@ func (f Factory) GetDay(name string) Day {
 
 		return One{
 			input.NewReader("inputs/one/1.txt"),
+			&[]int{},
 		}
 		break
 	}
 
 	return One {
 		input.NewReader("inputs/one/1.txt"),
+		&[]int{},
 	}
 }

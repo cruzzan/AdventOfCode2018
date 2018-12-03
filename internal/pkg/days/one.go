@@ -7,6 +7,7 @@ import (
 
 type One struct {
 	r input.Reader
+	lines *[]int
 }
 
 func (d One) Run(puzzle int)  {
@@ -23,21 +24,26 @@ func (d One) Run(puzzle int)  {
 
 func (d One) Puzzle1() {
 	fmt.Println("Task 1")
-	lines := d.r.ReadLines()
-	freqChanges := d.r.LinesToInts(lines)
-	result := d.sumFreqChanges(freqChanges)
+	lines := d.readLines()
+	result := d.sumFreqChanges(lines)
 
 	fmt.Printf("Resulting frequency: %d \n", result)
 }
 
 func (d One) Puzzle2() {
 	fmt.Println("Task 2")
-	lines := d.r.ReadLines()
-	freqChanges := d.r.LinesToInts(lines)
-
-	result := d.findFirstFrequencyRepetition(freqChanges)
+	lines := d.readLines()
+	result := d.findFirstFrequencyRepetition(lines)
 
 	fmt.Printf("First repeating frequency: %d \n", result)
+}
+
+func (d One) readLines() []int {
+	if len(*d.lines) == 0 {
+		*d.lines = d.r.ReadLinesAsNumbers()
+	}
+
+	return *d.lines
 }
 
 func (d One) sumFreqChanges(changes []int) int {
