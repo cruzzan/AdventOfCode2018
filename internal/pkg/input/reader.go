@@ -8,26 +8,50 @@ import (
 
 type Reader struct {
 	path string
+	file os.File
+	scanner bufio.Scanner
 }
 
 func NewReader(path string) Reader {
+	file, err := os.Open(path)
+	check(err)
+
 	return Reader{
-		path,
+		path: path,
+		file: *file,
+		scanner: *bufio.NewScanner(file),
 	}
 }
 
 func (r Reader) ReadLines() []string {
+	if &r.file != nil {
+		defer r.file.Close()
+	}
+
 	lines := []string{}
-	file, err := os.Open(r.path)
-	check(err)
 
-	scanner := bufio.NewScanner(file)
-
-	for scanner.Scan() {
-		lines = append(lines, scanner.Text())
+	for r.scanner.Scan() {
+		lines = append(lines, r.scanner.Text())
 	}
 
 	return lines
+}
+
+func (r Reader) ReadLinesAsNumbers() []int {
+	if &r.file != nil {
+		defer r.file.Close()
+	}
+
+	numbers := []int{}
+
+	for r.scanner.Scan() {
+		converted, err := strconv.Atoi(r.scanner.Text())
+		check(err)
+
+		numbers = append(numbers, converted)
+	}
+
+	return numbers
 }
 
 func (r Reader) LinesToInts(lines []string) []int {

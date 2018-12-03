@@ -1,28 +1,70 @@
 package input
 
-import "testing"
+import (
+	"bufio"
+	"io"
+	"strings"
+	"testing"
+)
 
-func TestStringToIntConversion(t *testing.T) {
+func TestReader_ReadLines(t *testing.T) {
 	cases := []struct{
-		in []string
-		want []int
+		in io.Reader
+		want []string
 	}{
-		{[]string{"0"}, []int{0}},
-		{[]string{"-1"}, []int{-1}},
-		{[]string{"1"}, []int{1}},
-		{[]string{"0", "2", "-3", "99999999"}, []int{0, 2, -3, 99999999}},
+		{strings.NewReader("-1\n-2\n9999"), []string{"-1", "-2", "9999"}},
+		{strings.NewReader("111\n0\n-20583"), []string{"111", "0", "-20583"}},
+		{strings.NewReader("0\n1\n100000000000"), []string{"0", "1", "100000000000"}},
+		{strings.NewReader("Hello\nworld\n!"), []string{"Hello", "world", "!"}},
 	}
 
-	r := Reader{}
+	for _, c := range cases {
+		r := Reader{
+			scanner: *bufio.NewScanner(c.in),
+		}
+
+		got := r.ReadLines()
+
+		// Check that the slices are the same length
+		if len(got) != len(c.want) {
+			t.Errorf("The expected input %v to yeild a slice of %d items, got %d items", c.in, len(c.want), len(got))
+		}
+
+		// Check that the slices contain the same elements, in order
+		for i, val := range got {
+			if val != c.want[i] {
+				t.Errorf("Failed asserting that two slices are equal, expected %v got %v", c.want, got)
+			}
+		}
+	}
+}
+
+func TestReader_ReadLinesAsNumbers(t *testing.T) {
+	cases := []struct{
+		in io.Reader
+		want []int
+	}{
+		{strings.NewReader("-1\n-2\n9999"), []int{-1, -2, 9999}},
+		{strings.NewReader("111\n0\n-20583"), []int{111, 0, -20583}},
+		{strings.NewReader("0\n1\n100000000000"), []int{0, 1, 100000000000}},
+	}
 
 	for _, c := range cases {
-		got := r.LinesToInts(c.in)
-		if len(got) != len(c.want) {
-			t.Errorf("The lenghts don't match, expected %d but got %d\n", len(c.want), len(got))
+		r := Reader{
+			scanner: *bufio.NewScanner(c.in),
 		}
-		for i, val := range c.want {
-			if val != got[i] {
-				t.Errorf("The slices don't match, expected %v but got %v\n", c.want, got)
+
+		got := r.ReadLinesAsNumbers()
+
+		// Check that the slices are the same length
+		if len(got) != len(c.want) {
+			t.Errorf("The expected input %v to yeild a slice of %d items, got %d items", c.in, len(c.want), len(got))
+		}
+
+		// Check that the slices contain the same elements, in order
+		for i, val := range got {
+			if val != c.want[i] {
+				t.Errorf("Failed asserting that two slices are equal, expected %v got %v", c.want, got)
 			}
 		}
 	}
