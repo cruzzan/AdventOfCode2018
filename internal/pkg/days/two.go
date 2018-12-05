@@ -40,7 +40,11 @@ func (d Two) Puzzle1()  {
 }
 
 func (d Two) Puzzle2()  {
-	fmt.Println("Todo")
+	fmt.Println("Task 2")
+	lines := d.r.ReadLines()
+	closeMatches := d.closeMatches(lines)
+	idOverlap := d.overlappingChars(closeMatches[0], closeMatches[1])
+	fmt.Printf("Overlapping letters in ids: %s \n", idOverlap)
 }
 
 func (d Two) containsDoubles(s string) bool {
@@ -69,4 +73,46 @@ func (d Two) containsTriples(s string) bool {
 	}
 
 	return false
+}
+
+func (d Two) closeMatches(boxIds []string) []string {
+	closeMatches := make(map[string]string)
+
+	for _, boxId := range boxIds {
+		for _, temp := range boxIds {
+			misses := 0
+			rtemp := []rune(temp)
+			for i, char := range []rune(boxId) {
+				if char != rtemp[i] {
+					misses++
+				}
+			}
+
+			if misses == 1 {
+				closeMatches[boxId] = boxId
+			}
+		}
+	}
+
+	var result []string
+
+	for _, match := range closeMatches {
+		result = append(result, match)
+	}
+
+	return result
+}
+
+func (d Two) overlappingChars(s1 string, s2 string) string {
+	var overlap []rune
+	for i, val := range []rune(s1){
+		if i < len(s2) {
+			char2 := rune(s2[i])
+			if val == char2 {
+				overlap = append(overlap, char2)
+			}
+		}
+	}
+
+	return string(overlap)
 }
