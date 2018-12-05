@@ -8,6 +8,7 @@ import (
 
 type Two struct {
 	r input.Reader
+	lines *[]string
 }
 
 func (d Two) Run(puzzle int)  {
@@ -22,9 +23,17 @@ func (d Two) Run(puzzle int)  {
 	}
 }
 
+func (d Two) readLines() []string {
+	if len(*d.lines) == 0 {
+		*d.lines = d.r.ReadLines()
+	}
+
+	return *d.lines
+}
+
 func (d Two) Puzzle1()  {
 	fmt.Println("Task 1")
-	lines := d.r.ReadLines()
+	lines := d.readLines()
 	doubles, triples := 0, 0
 
 	for _, in := range lines {
@@ -41,7 +50,7 @@ func (d Two) Puzzle1()  {
 
 func (d Two) Puzzle2()  {
 	fmt.Println("Task 2")
-	lines := d.r.ReadLines()
+	lines := d.readLines()
 	closeMatches := d.closeMatches(lines)
 	idOverlap := d.overlappingChars(closeMatches[0], closeMatches[1])
 	fmt.Printf("Overlapping letters in ids: %s \n", idOverlap)

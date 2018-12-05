@@ -17,6 +17,7 @@ func (f Factory) GetDay(name string) Day {
 	case "two":
 		return Two{
 			input.NewReader("inputs/two/1.txt"),
+			&[]string{},
 		}
 	}
 
